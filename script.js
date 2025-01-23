@@ -1,4 +1,9 @@
 //your code here
+ans.map(item=>{
+let li=document.createElement('li')
+	li.innerText=item;
+	
+})
 
 let arr = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
 let mp ={};
