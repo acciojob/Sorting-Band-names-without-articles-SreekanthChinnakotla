@@ -1,27 +1,28 @@
-//your code here
-// Get the reference to the <ul> with ID "band"
-const bandList = document.getElementById("band");
-document.body.appendChild(bandList);
+const arr = ["The Virupaksha Temple", "Victoria Memorial", "Tajmahal"];
+const mp = {}; // Mapping of article-less names to original names
 
-// Loop through the array and create list items
-ans.forEach(band => {
-  const listItem = document.createElement("li"); // Create an <li> element
-  listItem.textContent = band; // Set the text content to the band name
-  bandList.appendChild(listItem); // Append the <li> to the <ul>
-});
+// Regular expression to remove articles (case-insensitive)
+const reg = /\b(the|an|a)\b/gi;
 
-let arr = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
-let mp ={};
-let reg = //bthe/b|/ban/b|/ba/b/gi;
-	let articlelessarray = [];
-for(let i in arr){
-	let articlelessitem = arr[i].replace(reg, "").trim();
-	articlelessarray.push(articlelessitem);
-	mp[articlelessitem]=arr[i]
+const articlelessarray = [];
+
+// Remove articles and store in a map
+for (let i in arr) {
+  const articlelessitem = arr[i].replace(reg, "").trim();
+  articlelessarray.push(articlelessitem);
+  mp[articlelessitem] = arr[i]; // Map article-less to original
 }
+
+// Sort the article-less array
 articlelessarray.sort();
-let ans=[];
-for(let i of articlelessarray){
-	ans.push(mp[i])
-}
-console.log(ans);
+
+// Map back to original names and store in `ans`
+const ans = articlelessarray.map(item => mp[item]);
+
+// Display the sorted items in the <ul>
+const ul = document.getElementById("band");
+ans.forEach(band => {
+  const li = document.createElement("li");
+  li.textContent = band;
+  ul.appendChild(li);
+});
